@@ -1,18 +1,16 @@
-const form = document.getElementById("MyForm");
-const radius = document.getElementById("radius");
-const volume = document.getElementById("volume");
 
-form.addEventListener("submit", function (event) {
-    event.preventDefault();
+function volume_sphere() {
+    let radius = parseFloat(document.getElementById("radius").value);
 
-    const r = parseFloat(radius.value);
+    let volume;
 
-    if (r < 0) {
-        volume.value = "NaN";
-        return;
+    if (isNaN(radius) || radius < 0) {
+        volume = NaN;
+    } else {
+        volume = (4 / 3) * Math.PI * radius * radius * radius;
+        volume = volume.toFixed(4);
     }
 
-    const result = (4 / 3) * Math.PI * r * r * r;
+    document.getElementById("volume").value = volume;
+}
 
-    volume.value = result.toFixed(4);
-});
